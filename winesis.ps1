@@ -16,8 +16,8 @@ $global:score = 0 #make sure your total points add up to 100
 
 Function Solved {
     param(
-        [string]$vuln_name,
-        [int]$points
+        [String]$vuln_name,
+        [Int]$points
     )
     $global:score += $points
     Write-Output "Vulnerability fixed: $vuln_name [$points points]"
@@ -26,11 +26,11 @@ Function Solved {
 #under-the-hood function to handle checking text in a file
 Function TextExists {
     param(
-        [string]$file,
-        [string]$text
+        [String]$file,
+        [String]$text
     )
     try {
-        if (Get-Content $file | Select-String -Pattern ($text)) {
+        if (Get-Content $file -ErrorAction Stop | Select-String -Pattern ($text)) {
             return $true
         }
         else {
@@ -45,10 +45,10 @@ Function TextExists {
 # Function to check if text exists in a file
 Function CheckTextExists {
     param(
-        [string]$file,
-        [string]$text,
-        [string]$vuln_name,
-        [int]$points
+        [String]$file,
+        [String]$text,
+        [String]$vuln_name,
+        [Int]$points
     )
     $Exists = TextExists -file $file -text $text
     if ($null -eq $Exists) {
@@ -66,10 +66,10 @@ Function CheckTextExists {
 #Function to check if text does not exist in a file
 Function CheckTextNotExists {
     param(
-        [string]$file,
-        [string]$text,
-        [string]$vuln_name,
-        [int]$points
+        [String]$file,
+        [String]$text,
+        [String]$vuln_name,
+        [Int]$points
     )
     $Exists = TextExists -file $file -text $text
     if ($null -eq $Exists) {
@@ -88,9 +88,9 @@ Function CheckTextNotExists {
 # Function to check if a file exists
 Function CheckFileExists {
     param(
-        [string]$file,
-        [string]$vuln_name,
-        [int]$points
+        [String]$file,
+        [String]$vuln_name,
+        [Int]$points
     )
     if (Test-Path -Path $file) {
         Solved -vuln_name $vuln_name -points $points
@@ -102,9 +102,9 @@ Function CheckFileExists {
 
 Function CheckFileDeleted {
     param(
-        [string]$file,
-        [string]$vuln_name,
-        [int]$points
+        [String]$file,
+        [String]$vuln_name,
+        [Int]$points
     )
     
     if (-not (Test-Path -Path $file)) {
@@ -117,11 +117,11 @@ Function CheckFileDeleted {
 
 Function CheckRegistryKey {
     param(
-        [string]$path,
-        [string]$key,
-        [string]$expected_value,
-        [string]$vuln_name,
-        [int]$points
+        [String]$path,
+        [String]$key,
+        [String]$expected_value,
+        [String]$vuln_name,
+        [Int]$points
     )
     try {
         $property = Get-ItemProperty -Path $path -Name $key -ErrorAction Stop
@@ -140,10 +140,10 @@ Function CheckRegistryKey {
 
 Function RegistryKeyDeleted {
     param(
-        [string]$path,
-        [string]$key,
-        [string]$vuln_name,
-        [int]$points
+        [String]$path,
+        [String]$key,
+        [String]$vuln_name,
+        [Int]$points
     )
     try {
         ($value = Get-ItemProperty -Path $path -Name $key -ErrorAction Stop) | Out-Null
@@ -156,6 +156,9 @@ Function RegistryKeyDeleted {
         Write-Output "Unsolved Vuln"
     }
 }
+
+
+
 
 Write-Output " "
 Write-Output ">> Insert image name here <<"
