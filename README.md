@@ -16,22 +16,24 @@ Winesis was developed and tested on Windows 11. Use it on other operating system
 ## Directions for Use
  - Winesis has several functions to check different aspects of your system:
   - `CheckTextExists -file` '.\path\to\file\filename.txt' `-text` "text" `-vuln_name` "vuln name" `-points` #
-   - Checks if text exists within a file
-   - Use cases includes forensics questions and config files
+    - Checks if text exists within a file
+    - Use cases includes forensics questions and config files
   - `CheckTextNotExists -file` '.\path\to\file\filename.txt' `-text` "text" `-vuln_name` "vuln name" `-points` #
-   - Checks if text does NOT exist within a file
-   - Use cases include config files
+    - Checks if text does NOT exist within a file
+    - Use cases include config files
   - `CheckFileExists -file` '.\path\to\file\filename.txt' `-vuln_name` "vuln name" `-points` #
-   - Checks if a file exists
-   - Use cases include required programs
+    - Checks if a file exists
+    - Use cases include required programs
   - `CheckFileDeleted -file` '.\path\to\file\filename.txt' `vuln_name` "vuln name" `-points` #
-   - Checks if a file does NOT exist
-   - Use cases include disallowed programs, malware, etc.
+    - Checks if a file does NOT exist
+    - Use cases include disallowed programs, malware, etc.
   - `CheckRegistryKey -path` HIVE:\path\to\key `-key` NAMEOFKEY `-expected_value` "expectedvalue" `-vuln_name` "vuln name" `-points` #
-   - Checks if a registry key has a specific value
-   - Use cases include settings, startup/shutdown run scripts, and pretty much everything else
+    - Checks if a registry key has a specific value
+    - Use cases include settings, startup/shutdown run scripts, and pretty much everything else
   - `RegistryKeyDeleted -path` HIVE:\path\to\key `-key` NAMEOFKEY `vuln_name` "vuln name" `-points` #
+    - Checks that a registry key does NOT exist
+    - Use cases include bad Run keys, bad config keys, etc.
 
 ## Other Notes
  - If you update the scorebot online, it may take a few minutes for the changes to be reflected in the image
- - The scorebot relies on Internet access
+ - A reasonable understanding of PowerShell is strongly recommended to use this scorebot
