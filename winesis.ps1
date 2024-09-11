@@ -157,6 +157,38 @@ Function RegistryKeyDeleted {
     }
 }
 
+Function CheckService {
+    param(
+        [String]$name,
+        [Boolean]$is_running,
+        [String]$vuln_name,
+        [Int]$points
+    )
+    try {
+        $service = Get-Service -Name $name -ErrorAction Stop
+    }
+    catch {
+        Write-Output "Unsolved Vuln"
+        return
+    }
+
+    if ($is_running) {
+        if ($service.Status -eq 'Running') {
+            Solved -vuln_name $vuln_name -points $points
+        }
+        else {
+            Write-Output "Unsolved Vuln"
+        }
+    }
+    else {
+        if ($service.Status -eq 'Stopped') {
+            Solved -vuln_name $vuln_name -points $points
+        }
+        else {
+            Write-Output "Unsolved Vuln"
+        }
+    }
+}
 
 
 
