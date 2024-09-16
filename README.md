@@ -1,4 +1,7 @@
-# Winesis Scorebot
+# Winesis-Scorebot
+
+![363435303-fce4a796-2f7f-412e-bb7c-ec896e4a7a28-removebg-preview](https://github.com/user-attachments/assets/eff8486d-ad2b-4185-87e6-edcdbb0851f6)
+
 
 Winesis is a scorebot for Windows CyberPatriot training images. It is a Windows port of [Kinesis Scorebot](https://github.com/mattkoco/Kinesis-Scorebot).
 
@@ -62,6 +65,11 @@ Winesis has several functions to check different aspects of your system.
      - `-vuln_name`: The name to print out for the vuln. Format as a string.
      - `-points`: The number of points to award for solving the vuln. Format as an int.
      - Use cases include insecure services, persistent malware, The Goose, etc.
+  - `CheckGroupPolicy -secstring` "policy with value" `-vuln_name` "vuln name" `-points` #
+    - Checks a group policy
+    - `-secstring`: The string to search for within secedit /export /cfg. Run the command yourself first and copy the output for best results.
+    - `vuln_name`: The name to print out for the vuln. Format as a string.
+    - `points`: The number of points to award for solving the vuln. Format as an int. 
 
 ## Other Notes
  - If you update the scorebot online, it may take a few minutes for the changes to be reflected in the image
