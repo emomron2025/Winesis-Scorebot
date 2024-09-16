@@ -1,4 +1,9 @@
-
+$id = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$p = New-Object System.Security.Principal.WindowsPrincipal($id)
+if (-not $p.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    msg $ENV:Username The scorebot has failed due to insufficient permissions. Please contact your training lead or restart the script running as an administrator.
+    Exit
+}
 Write-Output "
 __          _ ______ _   _ ______  _____ _____  _____ 
 \ \        / |_   _| \ | |  ____|/ ____|_   _|/ ____|
@@ -12,7 +17,6 @@ Write-Output "Winesis Scorebot v1`n"
 Write-Output "NOTE: Please allow up to 5 minutes for scorebot updates & injects.`n"
 Write-Output "Injects: NO" # Modify this if you run an inject
 $global:score = 0 #make sure your total points add up to 100
-
 
 Function Solved {
     param(
@@ -147,6 +151,7 @@ Function RegistryKeyDeleted {
     )
     try {
         ($value = Get-ItemProperty -Path $path -Name $key -ErrorAction Stop) | Out-Null
+        if ($value -eq $value) {$value = $value} #simply to ease my peace of mind and stop my IDE from complaining that I never use $value
         Write-Output "Unsolved Vuln"
     }
     catch [System.Management.Automation.PSArgumentException] {
@@ -189,7 +194,26 @@ Function CheckService {
         }
     }
 }
-
+Function CheckGroupPolicy {
+    params(
+        [String]$secstring,
+        [String]$vuln_name,
+        [Int]$points
+    )
+    $exPath = "C:\temp.cfg"
+    try {
+        secedit /export /cfg $exPath
+        if (TextExists -file $exPath -text $secstring) {
+            Solved -vuln_name $vuln_name -points $points
+        }
+        else {
+            Write-Output "Unsolved Vuln"
+        }
+    }
+    catch {
+        Write-Output "Unsolved Vuln"
+    }
+}
 
 
 Write-Output " "
