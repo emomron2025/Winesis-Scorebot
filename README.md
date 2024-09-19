@@ -1,6 +1,8 @@
 # Winesis-Scorebot
 
-![363435303-fce4a796-2f7f-412e-bb7c-ec896e4a7a28-removebg-preview](https://github.com/user-attachments/assets/eff8486d-ad2b-4185-87e6-edcdbb0851f6)
+
+![363435339-eff8486d-ad2b-4185-87e6-edcdbb0851f6](https://github.com/user-attachments/assets/43b58322-37f9-4fb4-b40a-5482ab17f050)
+
 
 
 Winesis is a scorebot for Windows CyberPatriot training images. It is a Windows port of [Kinesis Scorebot](https://github.com/mattkoco/Kinesis-Scorebot).
