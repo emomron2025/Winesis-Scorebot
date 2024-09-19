@@ -8,8 +8,7 @@ $ScoringDir = "\." #put the absolute file path of your scoring directory between
 try {
   $Response = Invoke-WebRequest -Uri $ScorebotLink -ErrorAction Stop
   $Response.Content | Out-File -FilePath "$ScoringDir\scorebot.ps1"  
-}
-catch {
+} catch {
   Write-Output "Failed to download scorebot.ps1. Attempting to access local copy..."
 }
 
