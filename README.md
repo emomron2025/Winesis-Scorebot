@@ -1,4 +1,4 @@
-# Winesis-Scorebot
+# Winesis Scorebot
 
 
 ![363435339-eff8486d-ad2b-4185-87e6-edcdbb0851f6](https://github.com/user-attachments/assets/43b58322-37f9-4fb4-b40a-5482ab17f050)
